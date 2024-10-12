@@ -1,0 +1,301 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Training and Test - ARIMA",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--dataset_path", "./data/Dataset/Cup_PV_Processed.csv",
+                "--date_format", "%Y-%m-%d %H:%M:%S",
+                "--date_list", 
+                                // TRAINING SET
+                                "2017-01-01 00:00:00",
+                                "2018-01-03 00:00:00",
+                                // TEST SET
+                                "2018-01-03 00:00:00",
+                                "2018-02-03 00:00:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "ARIMA",
+                "--output_len", "1",
+                "--forecast_type","ol-one",
+                "--scaling", 
+                "--unscale_predictions"
+
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+      
+        {
+            "label": "Training and Test - SARIMA",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--dataset_path", "./data/Dataset/CenterHall.csv",
+                "--date_format", "%m/%d/%Y %H:%M",
+                "--date_list", "1/1/2018 0:00", "1/1/2019 0:00", "1/1/2019 0:00", "1/3/2019 0:00", "1/3/2019 0:00", "1/4/2019 0:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "SARIMA",
+                "--output_len", "1",
+                "--period","96",
+                "--forecast_type","ol-one",
+                "--scaling", 
+                "--unscale_predictions"
+                
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+ 
+        {
+            "label": "Training and Test - LSTM",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--dataset_path", "./data/Dataset/Processed_Center_Hall.csv",
+                "--date_format", "%Y-%m-%d %H:%M:%S",
+                "--date_list", 
+                                // TRAINING SET
+                                "2017-01-01 00:00:00",
+                                "2018-01-01 00:00:00",
+                                // VALIDATION SET
+                                "2018-01-01 00:00:00",
+                                "2018-01-03 00:00:00",
+                                // TEST SET
+                                "2018-01-03 00:00:00",
+                                "2018-02-03 00:00:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "LSTM",
+                "--period", "96",
+                "--input_len", "96",
+                "--output_len", "1",
+                "--forecast_type","ol-one",
+                "--scaling", 
+                "--validation",
+                "--unscale_predictions"
+
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Training and Test - LSTM Data PV",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--dataset_path", "./data/Dataset/Cup_PV_Processed.csv",
+                "--date_format", "%Y-%m-%d %H:%M:%S",
+                "--date_list", 
+                                // TRAINING SET
+                                "2017-01-01 00:00:00",
+                                "2018-01-01 00:00:00",
+                                // VALIDATION SET
+                                "2018-01-01 00:00:00",
+                                "2018-01-03 00:00:00",
+                                // TEST SET
+                                "2018-01-03 00:00:00",
+                                "2018-02-03 00:00:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "LSTM",
+                "--period", "96",
+                "--input_len", "96",
+                "--output_len", "1",
+                "--forecast_type","ol-one",
+                "--scaling", 
+                "--validation",
+                "--unscale_predictions"
+
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+
+        {
+            "label": "Training and Test - XGB PV Production",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--dataset_path", "./data/Dataset/Cup_PV_Processed.csv",
+                "--date_format", "%Y-%m-%d %H:%M:%S",
+                "--date_list", 
+                                // TRAINING SET
+                                "2016-01-01 00:00:00",
+                                "2017-07-01 00:00:00",
+                                // VALIDATION SET
+                                "2017-07-01 00:00:00",
+                                "2018-01-03 00:00:00",
+                                // TEST SET
+                                "2018-01-03 00:00:00",
+                                "2018-02-03 00:00:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "XGB",
+                "--input_len", "96",
+                "--output_len", "1",
+                "--period","96",
+                "--forecast_type","ol-one",
+                "--scaling", 
+                "--validation",
+                "--unscale_predictions"
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Training and Test - XGB Consumption",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--dataset_path", "./data/Dataset/Processed_Center_Hall.csv",
+                "--date_format", "%Y-%m-%d %H:%M:%S",
+                "--date_list", 
+                                // TRAINING SET
+                                "2016-01-07 10:45:00",
+                                "2018-01-07 10:45:00",
+                                // VALIDATION SET
+                                "2018-01-07 10:45:00",
+                                "2018-06-07 10:45:00",
+                                // TEST SET
+                                "2018-06-07 10:45:00",
+                                "2018-07-07 10:45:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "XGB",
+                "--input_len", "96",
+                "--output_len", "1",
+                "--period","96",
+                "--forecast_type","ol-one",
+                "--scaling", 
+                "--validation",
+                "--unscale_predictions"
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Training and Test - HYBRID",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--dataset_path", "./data/Dataset/CenterHall.csv",
+                "--date_format", "%m/%d/%Y %H:%M",
+                "--date_list", "01/01/2019 00:15:00",
+                                "01/09/2019 00:15:00",
+                                "01/09/2019 00:15:00",
+                                "05/09/2019 00:15:00",
+                                "05/09/2019 00:15:00",
+                                "06/09/2019 00:15:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "HYBRID",
+                "--period","96",
+                "--input_len", "96",
+                "--output_len", "1",
+                "--forecast_type","ol-one",
+                "--unscale_predictions"
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Training and Test - NAIVE",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--dataset_path", "./data/Dataset/Cup_PV_Processed.csv",
+                "--date_format", "%Y-%m-%d %H:%M:%S",
+                "--date_list", 
+                                // TRAINING SET
+                                "2017-01-01 00:00:00",
+                                "2018-01-03 00:00:00",
+                                // TEST SET
+                                "2018-01-03 00:00:00",
+                                "2018-02-03 00:00:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "NAIVE",
+                "--output_len", "1",
+                "--forecast_type","ol-one",
+                "--scaling", 
+                "--unscale_predictions"   
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Time series analysis",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "forecasting_framework.py",
+                "--run_mode", "train_test",
+                "--ts_analysis",
+                "--dataset_path", "./data/Dataset/Cup_PV_Processed.csv",
+                "--date_format", "%Y-%m-%d %H:%M:%S",
+                "--date_list", 
+                                // TRAINING SET
+                                "2017-01-01 00:00:00",
+                                "2019-01-03 00:00:00",
+                                // TEST SET
+                                "2019-01-03 00:00:00",
+                                "2019-02-03 00:00:00",
+                "--target_column", "RealPower",
+                "--data_freq", "15T",
+                "--model_type", "TS ANALYSIS",
+                "--period","96",
+                //"--scaling", 
+             ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+
+    ]
+}
